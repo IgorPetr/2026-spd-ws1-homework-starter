@@ -1,0 +1,36 @@
+name: HW 1.2 submission
+description: Submit Homework 1.2 (traceability) — links to the merged TASK-7 PR in your fork and the gate runs.
+title: "HW 1.2 submission — <first and last name>"
+labels: ["hw1-2"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: First and last name
+    validations:
+      required: true
+  - type: input
+    id: pr
+    attributes:
+      label: Merged TASK-7 PR in your fork
+      placeholder: https://github.com/<you>/2026-spd-ws1-homework-starter/pull/1
+    validations:
+      required: true
+  - type: input
+    id: red
+    attributes:
+      label: Red trace-gate run (a change without a key or evidence)
+      placeholder: https://github.com/<you>/2026-spd-ws1-homework-starter/actions/runs/...
+    validations:
+      required: true
+  - type: input
+    id: green
+    attributes:
+      label: Green trace-gate run on the final PR head
+      placeholder: https://github.com/<you>/2026-spd-ws1-homework-starter/actions/runs/...
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Adaptations to the CI scripts, optional parts, anything that didn't work as documented
