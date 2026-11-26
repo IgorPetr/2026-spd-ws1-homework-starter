@@ -10,7 +10,7 @@ Next.js 16 + SQLite (`node:sqlite`) app. Node 22.13+. Agreement and autonomy lev
 
 ## Hard rules
 - **Never edit an applied migration** (`db/migrations/001_*`, `002_*`). Add a new numbered file instead. A hook blocks edits.
-- Business rules (title 1..120, estimate 1..40 h, `todo → doing → done`, done is final) live only in `lib/tasks.ts`.
+- Business rules (title length, estimate range, allowed status moves) live only in `lib/tasks.ts`. Do not copy their values elsewhere.
   Route handlers in `app/api/**` stay thin: parse, call `lib/tasks.ts`, map `RuleViolation` to 422.
 - Every rule change in `lib/tasks.ts` needs a test in `lib/tasks.test.ts`.
 - No `CLAUDE.md` / `CLAUDE.local.md` in the repo. Personal settings go to `~/.claude/` and `.claude/settings.local.json`.
