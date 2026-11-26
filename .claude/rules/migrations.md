@@ -10,4 +10,5 @@ paths:
 - File name: `NNN_short_description.sql`, next free three-digit number. `lib/db.ts` applies files in name order.
 - One change per file. SQLite only: use `alter table ... add column`, with a `check` where the rule is in `lib/tasks.ts`.
 - If a migration adds a constraint, mirror it in `lib/tasks.ts` (the app rule) and in `lib/tasks.test.ts`.
-- Check: `npm run db:reset && npm test`. Use the `add-migration` skill for the full procedure.
+- Applied = tracked in git. A migration you just created and have not committed can still be fixed; a committed one cannot. A hook enforces this for Edit, Write and Bash.
+- Check: `npm test` (it applies every migration to a fresh in-memory DB), `npm run typecheck`, `git diff --stat -- db/migrations` (only new files). Use the `add-migration` skill for the full procedure.
