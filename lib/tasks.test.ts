@@ -26,6 +26,28 @@ describe("tasks", () => {
     expect(() => moveTask(db, t.id, "todo")).toThrow(RuleViolation);
   });
 
+  describe("estimateHours is a whole number 1..40 (TASK-7)", () => {
+    const MESSAGE = "estimateHours must be a whole number 1..40";
+    const create = (estimateHours: unknown) => createTask(db, { title: "Estimate", estimateHours: estimateHours as number });
+
+    it.each([1, 40])("accepts %s", (hours) => {
+      expect(create(hours).estimateHours).toBe(hours);
+    });
+
+    it.each([0, 41, 1.5, "3", "abc", null, NaN])("rejects %j with the agreed message", (hours) => {
+      expect(() => create(hours)).toThrow(new RuleViolation(MESSAGE));
+    });
+
+    it("stores nothing when the estimate is rejected", () => {
+      expect(() => create(1.5)).toThrow(RuleViolation);
+      expect(listTasks(db)).toHaveLength(0);
+    });
+
+    it("creates a task without an estimate as null", () => {
+      expect(createTask(db, { title: "No estimate" }).estimateHours).toBeNull();
+    });
+  });
+
   it("does not skip doing", () => {
     const t = createTask(db, { title: "Path rule" });
     expect(() => moveTask(db, t.id, "done")).toThrow(RuleViolation);
