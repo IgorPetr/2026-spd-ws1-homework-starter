@@ -16,7 +16,7 @@ Levels: **L0** no agent · **L1** agent suggests, human writes · **L2** agent w
 | API route (`app/api/**`) | L3 | The rule behind each 422 has a unit test in `lib/tasks.test.ts`; the route stays thin (parse, call `lib/tasks.ts`, map `RuleViolation`), which the reviewer checks in the diff; `npm test` and `npm run typecheck` green. There are no route-level HTTP tests yet | PR reviewer |
 | New DB migration (new file in `db/migrations/`) | L2 | `npm test` applies every migration to a fresh in-memory DB; `npm run typecheck`; `git diff --stat -- db/migrations` lists only new files; a note on how to undo it; follows the `add-migration` skill | Owner reads every line |
 | Editing an applied (committed) migration | L0 | Blocked before the call by the `PreToolUse` hook (Edit, Write and Bash writes) and by `deny` rules for `001_*`/`002_*`; a `PostToolUse` check fails on any modified or deleted tracked migration; schema changes go to a new migration | — |
-| Harness files (`AGENTS.md`, `.claude/**`, `docs/ai/**`) | L1 | Agent may propose; behaviour changes need an A/B note (`docs/ai/ab-note.md`) | CODEOWNERS |
+| Harness files (`AGENTS.md`, `.claude/**`, `docs/ai/**`, `.github/workflows/**`) | L1 | Agent may propose; behaviour changes need an A/B note (`docs/ai/ab-note.md`) | CODEOWNERS |
 
 Rule of thumb: a change type goes one level up only when its check is cheap, independent of the agent, and runs every time.
 

@@ -19,5 +19,6 @@ Next.js 16 + SQLite (`node:sqlite`) app. Node 22.13+. Agreement and autonomy lev
 ## Where things are
 - `.claude/rules/migrations.md` — loads when you touch `db/migrations/**`
 - `.claude/skills/add-migration/` — procedure for a schema change
+- `.claude/rules/commits.md` — commit trailers (`Refs: TASK-n`, `Assisted-by:`, `Evidence:`); CI checks them
 - `docs/ai/handoff-template.md` — write one at the end of a session
 - Changes to `AGENTS.md`, `.claude/**`, `docs/ai/**` need CODEOWNERS review (`.github/CODEOWNERS`)
